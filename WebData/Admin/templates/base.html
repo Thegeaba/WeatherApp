@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'weather_style.css' %}">
+
+    <title>{% block title %} Responsive Admin Dashboard {% endblock %} </title>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#" class="logo">
+            <i class='bx bxs-briefcase'></i>
+            <div class="logo-name"><span>Admin</span>Dash</div>
+        </a>
+        <ul class="side-menu">
+            <li class="active"><a href="#"><i class='bx bxs-bar-chart-alt-2'></i>Dashboard</a></li>
+            <li><a href="{% url 'weather' %}"><i class='bx bxl-html5' ></i>Weather</a></li>
+            <li><a href="{% url 'nasa' %}"><i class='bx bxl-css3' ></i>NASA</a></li>
+            <li><a href="#"><i class='bx bxl-javascript' ></i>JavaScript</a></li>
+            <li><a href="#"><i class='bx bxl-python'></i>Python</a></li>
+            <li><a href="#"><i class='bx bxl-django'></i>Django</a></li>
+        </ul>
+        <ul class="side-menu"></ul>
+        <li>
+            <a href="#" class="logout">
+                <i class='bx bx-log-out'></i> Logout
+            </a>
+        </li>
+    </div>
+    <!-- End of Sidebar -->
+
+    <!-- Navbar -->
+    <div class="content">
+        <nav>
+            <i class='bx bx-menu'></i>
+            <form action="#">
+                <div class="form-input">
+                    <input type="search" placeholder="Search...">
+                    <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
+            <input type="checkbox" id="theme-toggle" hidden>
+            <label for="theme-toggle" class="theme-toggle"></label>
+            <a href="#" class="notif">
+                <i class='bx bx-bell'></i>
+                <span class="count">12</span>
+            </a>
+            <a href="#" class="profile">
+                <i class='bx bxl-baidu'></i>
+            </a>
+        </nav>
+
+        <!-- End of Navbar -->
+
+    <!-- Main Content -->
+
+        <main>
+
+        {% block content %}
+        
+            Content
+
+        {% endblock %}
+
+        </main>
+
+    <!-- End of Main Content-->
+
+
+    <!-- JavaScript -->
+    <script src="index.js">
+
+    </script>
+    <!-- End of JavaScript -->
+</body>
+
+</html>

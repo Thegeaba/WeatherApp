@@ -1,0 +1,102 @@
+{% extends "base.html" %} {% block title %} Weather {% endblock %}
+
+{% block content %}  
+
+<div class="body1">
+<div class="container_weather">
+    <div class="left-info">
+        <div class="pic-gradient"></div>
+        <div class="today-info">
+
+            <h2> Ziua </h2>
+            <span> Data </span>
+            <div>
+                <i class='bx bx-current-location'></i>
+                <span>
+                    {% if weather_data %}
+                        {{ weather_data.city }}
+                    {% else %}
+                        {{ weather_data.city }}
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+        <div class="today-weather">
+            <i class='bx bx-sun'></i>
+            <h1 class="weather-temp">
+            {% if weather_data %}
+                {{ weather_data.temperature }}
+            {% else %}
+                {{ weather_data.temperature }}
+            {% endif %}
+            </h1>
+            <h3> 
+            {% if weather_data %}
+                {{ weather_data.description }}
+            {% else %}
+                {{ weather_data.description }}
+            {% endif %}
+            </h3>
+        </div>
+    </div>
+
+    <div class="right-info">
+        <div class="day-info">
+            <div>
+                <span class="title">PRECIPITATION</span>
+                <span class="value">
+                {% if weather_data %}
+                    {{ weather_data.humidity }} 
+                {% else %}
+                    {{ weather_data.humidity }} 
+                {% endif %}
+                </span> !!!
+            </div>
+            <div>
+                <span class="title">HUMIDITY</span>
+                <span class="value">
+                {% if weather_data %}
+                    {{ weather_data.humidity }} %
+                {% else %}
+                    {{ weather_data.humidity }} %
+                {% endif %}
+                </span>
+            </div>
+            <div>
+                <span class="title">WIND SPEED</span>
+                <span class="value">            
+                {% if weather_data %}
+                    {{ weather_data.wind }} km/h
+                {% else %}
+                    {{ weather_data.wind }} km/h
+                {% endif %}</span>
+            </div>
+        </div>
+
+        {% if daily_forecasts %}
+            <ul class="days-list">
+            {% for forecast in daily_forecasts %}
+                <li>
+                    <i class='bx bx-cloud'></i>
+                    <span>{{ forecast.day }}</span>
+                    <span class="day-temp">{{ forecast.temperature }}</span>
+                </li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+
+        <div class="btn-container">
+            
+            <form method="post">
+                {% csrf_token %}
+                <button type ="submit" class="loc-button">Search Location</button>
+                <input type="text" name="city" placeholder="City">
+            </form>
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+{% endblock %}
